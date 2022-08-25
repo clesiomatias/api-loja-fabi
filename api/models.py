@@ -11,7 +11,7 @@ class Categoria(models.Model):
     ('F', 'Feminino'),    
     )
     
-    id = models.UUIDField( primary_key=True, default=uuid.uuid4, editable=False)
+    
     tipo = models.CharField(max_length=1, choices=  ESCOLHAS_CATEGORIA,blank=False, null=False)
      
     class Meta:
@@ -27,7 +27,7 @@ class Sub_Categoria(models.Model):
     ('P','Plus_Size'),
     )
     
-    id = models.UUIDField( primary_key=True, default=uuid.uuid4, editable=False)
+    
     tipo = models.CharField(max_length=1, choices=  ESCOLHAS_SUB_CATEGORIA, blank=False, null=False)
      
     class Meta:
@@ -45,7 +45,7 @@ class Tipos(models.Model):
     ('int','Roupa_Intima'),
     
     )
-    id = models.UUIDField( primary_key=True, default=uuid.uuid4, editable=False)
+    
     nome = models.CharField(max_length=3, choices=  ESCOLHAS_TIPO,blank=False, null=False)
        
      
@@ -57,7 +57,7 @@ class Tipos(models.Model):
         return self.nome
 
 class Produto(models.Model):
-      id = models.UUIDField( primary_key=True, default=uuid.uuid4, editable=False)
+      
       nome =models.CharField(max_length=100,blank=False, null=False)
       categoria=models.ForeignKey('Categoria', on_delete=models.CASCADE,blank=False, null=False)
       tipo=models.ForeignKey('Tipos',on_delete=models.CASCADE,blank=False, null=False)
@@ -79,7 +79,7 @@ class Venda(models.Model):
         PAGO =3,'Pago'
         ENTREGUE =4,'Entregue'
         
-    usuario = models.ForeignKey(User, on_delete=models.PROTECT,related_name='venda')
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT,related_name='venda', default=1)
     status = models.IntegerField(choices= StatusVenda.choices, default= StatusVenda.CARRINHO)
     
     
