@@ -8,6 +8,10 @@ from django.views.decorators.csrf import csrf_exempt
 from api.models import Categoria
 
 
+def homeAmigavel(request):
+    mensagem = "Obrigado , tudo está funcionando aqui"
+    return HttpResponse( mensagem)
+
 @method_decorator(csrf_exempt, name='dispatch')
 class CategoriaView(View):
   
